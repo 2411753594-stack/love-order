@@ -864,17 +864,8 @@ function clearCart() {
   showToast('已清空啦 🗑️');
 }
 
-// ===== SEND (with long press easter egg) =====
-function startSend() {
-  const total = Object.values(cart).reduce((s, v) => s + v.qty, 0);
-  if (total === 0) { showToast('还没点东西呢，先去挑一挑吧～'); return; }
-  if (total >= 3) {
-    // long press setup is done via mousedown/touchstart — this is the click handler (short press)
-    doSend();
-  } else {
-    doSend();
-  }
-}
+// ===== SEND =====
+function startSend() { /* handled by btnSend click listener */ }
 
 function doSend() {
   playSend();
@@ -882,34 +873,18 @@ function doSend() {
   setTimeout(() => showToast('💌 已发给他啦！玉米的愿望马上实现～🌽'), 300);
 }
 
-// Long press for waiter easter egg
+// Click for waiter easter egg (3+ items in cart)
 const btnSend = document.getElementById('btnSend');
-function onSendDown(e) {
-  const total = Object.values(cart).reduce((s, v) => s + v.qty, 0);
-  if (total < 3) return;
-  sendPressing = true;
-  btnSend.classList.add('btn-send-press');
-  sendPressTimer = setTimeout(() => {
-    if (sendPressing) {
-      sendPressing = false;
-      triggerWaiter();
-    }
-  }, 2000);
-}
-function onSendUp(e) {
-  if (sendPressTimer) clearTimeout(sendPressTimer);
-  if (sendPressing) {
-    sendPressing = false;
-    // it was a normal click, doSend
-    startSend();
-  }
-  btnSend.classList.remove('btn-send-press');
-}
-btnSend.addEventListener('mousedown', onSendDown);
-btnSend.addEventListener('touchstart', onSendDown, { passive: true });
-btnSend.addEventListener('mouseup', onSendUp);
-btnSend.addEventListener('touchend', onSendUp);
 btnSend.removeAttribute('onclick');
+btnSend.addEventListener('click', () => {
+  const total = Object.values(cart).reduce((s, v) => s + v.qty, 0);
+  if (total === 0) { showToast('还没点东西呢，先去挑一挑吧～'); return; }
+  if (total >= 3) {
+    triggerWaiter();
+  } else {
+    doSend();
+  }
+});
 
 // ===== TOAST =====
 function showToast(msg) {
