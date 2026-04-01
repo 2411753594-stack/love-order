@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>🌽 玉米的专属点单</title>
+<title>🍓 宝宝点单啦</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -512,10 +512,10 @@
 
 <!-- HEADER -->
 <div class="header" id="logo" onclick="handleLogoClick()">
-  <div class="header-deco">🌽 玉米专属 · 随时点单 🌽</div>
-  <div class="header-title">玉米的点单本</div>
-  <div class="header-sub">想要什么尽管说，我来搞定 💕</div>
-  <div class="header-hearts">🌽</div>
+  <div class="header-deco">✨ 专属点单 ✨</div>
+  <div class="header-title">🍓 宝宝点单啦</div>
+  <div class="header-sub">想要什么，全都有～</div>
+  <div class="header-hearts">💕</div>
 </div>
 
 <!-- TABS -->
@@ -536,7 +536,7 @@
     <div class="cart-badge" id="cartBadge">0</div>
   </div>
   <div class="cart-info">
-    <div id="cartBarText" class="cart-empty-text">玉米还没选呢，快挑起来～🌽</div>
+    <div id="cartBarText" class="cart-empty-text">还没选呢，快点点点～</div>
   </div>
   <button class="cart-action" id="cartAction">去看看</button>
 </div>
@@ -549,7 +549,7 @@
   <div class="sheet-items" id="sheetItems"></div>
   <div class="sheet-footer">
     <button class="btn-clear" onclick="clearCart()">清空</button>
-    <button class="btn-send" id="btnSend" onclick="startSend()">发给他 💌🌽</button>
+    <button class="btn-send" id="btnSend" onclick="startSend()">发给TA 💌</button>
   </div>
 </div>
 
@@ -567,9 +567,9 @@
 <!-- RAINBOW OVERLAY -->
 <div class="rainbow-overlay" id="rainbowOverlay"></div>
 <div class="comfort-popup" id="comfortPopup">
-  <div class="comfort-popup-emoji">🌽</div>
-  <div class="comfort-popup-text">玉米不开心了？<br>那肯定是还没被夸够！<br>你是世界上最可爱的玉米！🌈</div>
-  <button class="comfort-popup-close" onclick="closeComfortPopup()">嗯！玉米开心了！🌽</button>
+  <div class="comfort-popup-emoji">🌈</div>
+  <div class="comfort-popup-text">不开心就对了，<br>因为你太可爱了！😊<br>我最最喜欢你～</div>
+  <button class="comfort-popup-close" onclick="closeComfortPopup()">嗯！我开心了！🌟</button>
 </div>
 
 <!-- WAITER OVERLAY -->
@@ -608,12 +608,12 @@
         <rect x="42" y="12" width="16" height="2" rx="1" fill="#FFD6E0"/>
       </svg>
     </div>
-    <div class="waiter-name">🌽 玉米专属服务员</div>
-    <div class="waiter-title">⭐⭐⭐⭐⭐ 只为玉米服务</div>
+    <div class="waiter-name">小粉 · 专属服务员</div>
+    <div class="waiter-title">⭐⭐⭐⭐⭐ 五星好评服务员</div>
     <div class="waiter-msg">
-      哇！玉米点了这么多！<br>全都安排上了，玉米开心就好～<br>世界上最可爱的玉米 🌽💕
+      哇你点了这么多！<br>我全都帮你安排好了～<br>你真的是最可爱的宝宝 🌸
     </div>
-    <button class="waiter-close" onclick="closeWaiter()">玉米很满意！🌽</button>
+    <button class="waiter-close" onclick="closeWaiter()">谢谢小粉！💕</button>
   </div>
 </div>
 
@@ -652,7 +652,7 @@ const menus = [
     // 烧烤类
     { icon: '🔥', name: '炭火烤串', desc: '撸串看星星，人间值得的事情' },
     { icon: '🥩', name: '烤牛肉卷', desc: '切开那一刻，仪式感和香气都来了' },
-    { icon: '🌽', name: '烤玉米（必点）', desc: '因为玉米最可爱，烤玉米也沾光变好吃了' },
+    { icon: '🌽', name: '烤玉米/蔬菜', desc: '焦焦的边，甜甜的芯，停不下来' },
     // 日韩料理
     { icon: '🍱', name: '日式定食', desc: '精致好看，适合假装很高级的那天' },
     { icon: '🍣', name: '手作寿司', desc: '一口一个，鲜到眼睛弯起来' },
@@ -870,7 +870,7 @@ function startSend() { /* handled by btnSend click listener */ }
 function doSend() {
   playSend();
   closeCart();
-  setTimeout(() => showToast('💌 已发给他啦！玉米的愿望马上实现～🌽'), 300);
+  setTimeout(() => showToast('💌 已发给TA啦！等TA回应吧～'), 300);
 }
 
 // Click for waiter easter egg (3+ items in cart)
@@ -892,13 +892,11 @@ function showToast(msg) {
 
 // ===== EASTER EGG 1: HEART RAIN =====
 const lovePhrases = [
-  { emoji: '🌽', text: '玉米玉米，你是我最甜的那一根。' },
   { emoji: '💕', text: '你出现在我的世界里，是我最好的运气。' },
-  { emoji: '🌽', text: '别人叫你玉米，但在我眼里你是宝。' },
-  { emoji: '✨', text: '玉米笑起来的样子，比所有星星都好看。' },
-  { emoji: '🌽', text: '想和玉米一起，把所有季节都过一遍。' },
-  { emoji: '🌙', text: '每天睡前最后一个想到的人，是我的玉米。' },
-  { emoji: '🌽', text: '如果你是玉米，那我就是每天烤你的那把火。' },
+  { emoji: '🌸', text: '喜欢你，是我做过最正确的事。' },
+  { emoji: '✨', text: '你笑起来的样子，比所有星星都好看。' },
+  { emoji: '🍓', text: '想和你一起，把所有季节都过一遍。' },
+  { emoji: '🌙', text: '每天睡前最后一个想到的人，是你。' },
 ];
 let heartRainActive = false;
 
