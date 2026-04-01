@@ -879,11 +879,7 @@ btnSend.removeAttribute('onclick');
 btnSend.addEventListener('click', () => {
   const total = Object.values(cart).reduce((s, v) => s + v.qty, 0);
   if (total === 0) { showToast('还没点东西呢，先去挑一挑吧～'); return; }
-  if (total >= 3) {
-    triggerWaiter();
-  } else {
-    doSend();
-  }
+  triggerWaiter();
 });
 
 // ===== TOAST =====
