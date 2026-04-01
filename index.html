@@ -865,10 +865,24 @@ function clearCart() {
 }
 
 // ===== SEND =====
+const SCTKEY = 'SCT332458TtRYfq2MAfquyTQ4nDKOibQqf';
+
 function startSend() { /* handled by btnSend click listener */ }
 
 function doSend() {
   playSend();
+  // 组装订单内容
+  const items = Object.values(cart);
+  const orderList = items.map(v => `• ${v.icon} ${v.name} x${v.qty}`).join('\n');
+  const total = items.reduce((s, v) => s + v.qty, 0);
+  const title = `🛍️ 宝宝点单来啦！共${total}件`;
+  const desp = `## 宝宝的订单 💕\n\n${orderList}\n\n---\n快去安排吧～`;
+  // 发送 Server酱通知
+  fetch(`https://sctapi.ftqq.com/${SCTKEY}.send`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `title=${encodeURIComponent(title)}&desp=${encodeURIComponent(desp)}`
+  }).catch(() => {}); // 静默失败，不影响体验
   closeCart();
   setTimeout(() => showToast('💌 已发给TA啦！等TA回应吧～'), 300);
 }
